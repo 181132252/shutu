@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>计算器</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      .panel {
+        border: 4px solid #ddd;
+        width: 192px;
+        margin: 100px auto;
+        /*border-radius: 6px;*/
+      }
+      .panel p, .panel input {
+        font-family: "微软雅黑";
+        font-size: 20px;
+        margin: 4px;
+        float: left;
+        /*border-radius: 4px;*/
+      }
+      .panel p {
+        width: 122px;
+        height: 26px;
+        border: 1px solid #ddd;
+        padding: 6px;
+        overflow: hidden;
+      }
+      .panel input {
+        width: 40px;
+        height: 40px;
+        border:1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="panel" onclick="f(event)">
+      <div>
+        <p id="screen"></p>
+        <input type="button" value="C">
+        <div style="clear:both"></div>
+      </div>
+      <div>
+        <input type="button" value="7">
+        <input type="button" value="8">
+        <input type="button" value="9">
+        <input type="button" value="/">
+        
+        <input type="button" value="4">
+        <input type="button" value="5">
+        <input type="button" value="6">
+        <input type="button" value="*">
+        
+        <input type="button" value="1">
+        <input type="button" value="2">
+        <input type="button" value="3">
+        <input type="button" value="-">
+        
+        <input type="button" value="0">
+        <input type="button" value=".">
+        <input type="button" value="=">
+        <input type="button" value="+">
+        
+        <div style="clear:both"></div>
+      </div>
+    </div> 
+    <script type="text/javascript" src="js/jquery-3.4.1.js" ></script>
+    <script type="text/javascript">
+    	//event.val 获取触发事件的值
+    	//event.target 标签
+    	//eval() 可以计算字符串类型的表达式
+    	//nodeName:标签名
+    	function f(event){
+        	var btn = event.target;//1.获取点击触发事件的标签
+    	console.log($(btn).prop("nodeName"));
+	    		if($(btn).prop("nodeName")!="INPUT"){
+	    		return;
+	    		}//2.判断是否等于input标签
+	    var text =$('#screen').html();
+	    var num = $(btn).val();
+    	if($(btn).val()=="C"){
+    		$('#screen').html("");//3.判断是否等于C   清出所有
+    	}else if($(btn).val()=="="){
+    		var result = eval(text);
+    		//4.判断等于=     得出结果
+    		$('#screen').html(text+'='+result);
+    			}else{
+    				text+=num;//5.<p> 输出内容    
+    				$("#screen").html(text);
+    			}
+    	}  		
+	
+    </script>
+  </body>
+</html>
